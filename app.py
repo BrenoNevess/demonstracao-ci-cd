@@ -1,4 +1,6 @@
-ADMIN_PASSWORD = "123456"  # Vulnerabilidade intencional 
+import os
+
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 DEMO_USERNAME = "Breno"
 
 
@@ -10,7 +12,8 @@ def login(username, password):
 
 
 def main():
-    print(login(DEMO_USERNAME, ADMIN_PASSWORD))
+    login_password = os.getenv("LOGIN_PASSWORD", "")
+    print(login(DEMO_USERNAME, login_password))
 
 
 if __name__ == "__main__":
