@@ -51,7 +51,7 @@ git remote add origin https://github.com/SEU-USUARIO/devsecops-demo.git
 git push -u origin main
 ```
 
-O primeiro push dispara o workflow. No GitHub, abra **Actions**, selecione **DevSecOps Pipeline** e mostre que a etapa do Bandit falhou por causa da senha fixa.
+O primeiro push dispara o workflow. No GitHub, abra **Actions**, selecione **DevSecOps Pipeline** e veja que a etapa do Bandit falhou por causa da senha fixa.
 
 ## Corrigir e publicar a segunda etapa
 
@@ -100,17 +100,6 @@ git push
 ```
 
 Volte à aba **Actions**. A nova execução deve passar. Não faça esse segundo commit antes de mostrar a primeira execução com falha.
-
-## Linha de raciocínio para apresentar
-
-1. **O programa funciona:** execute `python app.py` e mostre a mensagem de login. Explique que funcionamento não prova segurança.
-2. **Há um risco no código:** mostre `ADMIN_PASSWORD = "123456"`. É uma credencial escrita diretamente no fonte.
-3. **A análise identifica o risco:** execute `python -m bandit -r .` e mostre B105. Explique que SAST analisa o código sem precisar executar o programa.
-4. **A verificação entra no CI:** faça o primeiro push e mostre o workflow falhando no GitHub Actions. O `push` aciona a análise automaticamente.
-5. **O risco é corrigido:** troque a senha fixa por variáveis de ambiente, rode Bandit de novo e confirme que B105 desapareceu.
-6. **A correção é verificada novamente:** faça o segundo push e mostre a execução aprovada. A conclusão é que a segurança foi incorporada ao fluxo de alteração, antes de avançar.
-
-Mensagem final sugerida: **"A aplicação funcionava, mas continha uma credencial exposta. Ao integrar o Bandit ao CI, cada alteração passa por uma verificação automática. A ferramenta encontra alguns padrões de risco, mas não garante segurança total."**
 
 ## Limites da demonstração
 
